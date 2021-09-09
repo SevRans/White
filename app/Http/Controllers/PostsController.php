@@ -15,4 +15,26 @@ class PostsController extends Controller
     {
         return Posts::with(['user'])->get();
     }
+
+public function store(Request $request)
+{
+    $validated = $request->validate([
+
+        'title' => 'required',
+        'text' => 'required',
+
+    ]);
+    $newPosts = new Posts();
+    $newPosts -> author_id = Auth::id();
+    $newPosts->title = $validated ['title'];
+    $newPosts->body =$validated['text'];
+
+    $newPosts->save();
+
+
+    //return redirect()->route('Answers.create')
+    //    ->with('success','question created.');
+    return route('posts.index');
+
+}
 }

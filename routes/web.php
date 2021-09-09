@@ -13,18 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/VuePosts', function(){
-    return view ('testVueJs');
-});
-Route::get('/testJS', function () {
-    return view('/testJS');
-});
-Route::get('/testVueJS', function () {
-    return view('/testVueJS');
-})->name('testVue');
+Route::get('/', function () {return view('welcome');});
+
+Route::get('/VuePosts', function(){return view ('testVueJs');});
+
+Route::get('/testJS', function () {return view('/testJS');});
+
+Route::get('/testingVue', function () { return view('/testingVue');})->name('testVue');
 
 Route::get('/createVueJs', function () {
     return view('.createVueJs');
@@ -32,9 +27,21 @@ Route::get('/createVueJs', function () {
 Route::get('/VueModel', function () {
     return view('.VueModel');
 });
-
-Route::get('/posts', [App\Http\Controllers\PostsController::class, 'index']);
-
+Route::group(
+    ['prefix' => 'posts',
+        'as'  =>'posts.'
+    ], function () {
+    Route::get('/', [App\Http\Controllers\PostsController::class, 'index'])->name('index');
+    Route::post('store', [App\Http\Controllers\PostsController::class, 'store'])->name('store');
+});
+Route::group(
+    ['prefix'=>'questions',
+    'as'=>'questions.'
+    ], function(){
+    Route::get('/',[App\Http\Controllers\QuestionsController::class,'indexApi'])->name('inApi');
+    Route::post('check', [\App\Http\Controllers\QuestionsController::class, 'checkAnswer'])->name('check');
+    Route::post('create', [\App\Http\Controllers\QuestionsController::class, 'store'])->name('create');
+});
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

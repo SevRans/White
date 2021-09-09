@@ -55,11 +55,6 @@ export default {
     data() {
         return {
             question: '',
-            answer: {
-                text: '',
-                variant:0,
-                value:0
-            },
             answers: [],
             isModalVisible: false,
             resSum: '',

@@ -25,7 +25,7 @@ export default {
     },
 
     mounted() {
-        axios.get('/api/questions')
+        axios.get('/questions')
             .then((response) => {
                 // handle success
                 //console.log(response);

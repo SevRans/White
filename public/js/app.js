@@ -5431,7 +5431,7 @@ __webpack_require__.r(__webpack_exports__);
         text: this.post.text
       }).then(function (response) {
         console.log(response);
-        location.href = '/home';
+        location.href = '/';
       })["catch"](function (error) {
         console.log(error.response.data);
       })["finally"](function () {});
@@ -5517,11 +5517,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       question: '',
-      answer: {
-        text: '',
-        variant: 0,
-        value: 0
-      },
       answers: [],
       isModalVisible: false,
       resSum: '',
@@ -5771,7 +5766,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/api/questions').then(function (response) {
+    axios.get('/questions').then(function (response) {
       // handle success
       //console.log(response);
       _this.questions = response.data;
@@ -11319,7 +11314,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nbody[data-v-38048495]{\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbody[data-v-38048495]{\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11343,7 +11338,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nlabel[data-v-69bc1ead] {\r\n\r\n\r\n    display: inline-block;\r\n    margin: 25px 0 15px;\r\n    font-size: 1em;\r\n    text-transform: uppercase;\r\n    letter-spacing: 1px;\r\n    font-width: bold;\n}\nspan[data-v-69bc1ead] {\n}\nbutton[data-v-69bc1ead] {\r\n    max-width: 50px;\r\n    margin: 20px auto;\r\n    background: grey;\r\n    text-align: center;\r\n    padding: 8px;\r\n    border-radius: 10px;\n}\nbutton[type=\"submit\"][data-v-69bc1ead] {\r\n    max-width: 120px;\r\n    background-color: white;\r\n    color: black;\r\n    margin: auto;\r\n    text-align: center;\r\n    padding: 8px;\r\n    border-radius: 10px;\r\n    font-width: bold;\n}\np[data-v-69bc1ead] {\r\n\r\n    display: inline-block;\r\n    font-size: 1em;\r\n    text-transform: uppercase;\r\n    letter-spacing: 1px;\r\n    font-width: bold;\r\n    margin-right: auto;\r\n    margin-top: 30px;\n}\ninput[data-v-69bc1ead] {\r\n    padding-bottom: 10px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nlabel[data-v-69bc1ead] {\n\n\n    display: inline-block;\n    margin: 25px 0 15px;\n    font-size: 1em;\n    text-transform: uppercase;\n    letter-spacing: 1px;\n    font-width: bold;\n}\nspan[data-v-69bc1ead] {\n}\nbutton[data-v-69bc1ead] {\n    max-width: 50px;\n    margin: 20px auto;\n    background: grey;\n    text-align: center;\n    padding: 8px;\n    border-radius: 10px;\n}\nbutton[type=\"submit\"][data-v-69bc1ead] {\n    max-width: 120px;\n    background-color: white;\n    color: black;\n    margin: auto;\n    text-align: center;\n    padding: 8px;\n    border-radius: 10px;\n    font-width: bold;\n}\np[data-v-69bc1ead] {\n\n    display: inline-block;\n    font-size: 1em;\n    text-transform: uppercase;\n    letter-spacing: 1px;\n    font-width: bold;\n    margin-right: auto;\n    margin-top: 30px;\n}\ninput[data-v-69bc1ead] {\n    padding-bottom: 10px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
