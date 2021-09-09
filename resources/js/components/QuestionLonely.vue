@@ -13,7 +13,7 @@
             </tr>
 
             <tr>
-                <td v-for="an in question.answer">
+                <td v-for="an in question.answers">
                     <input type="checkbox" class="form-check-input" name="test" v-on:click="chois(an)" :value="an.id" v-model="checkedAnswers">
                     <label :id="an.id">{{ an.text | capitalize }}<br></label>
                 </td>

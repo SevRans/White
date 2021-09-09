@@ -17,9 +17,10 @@ Route::get('/', function () {return view('welcome');});
 
 Route::get('/VuePosts', function(){return view ('testVueJs');});
 
-Route::get('/testJS', function () {return view('/testJS');});
+Route::get('/testJS', function () {return view('forTest/testJS');});
 
-Route::get('/testingVue', function () { return view('/testingVue');})->name('testVue');
+//Route::get('/testingVue', function () { return view('testingVue');})->name('testVue');
+Route::view('/testingVue','testingVue')->name('testVue');
 
 Route::get('/createVueJs', function () {
     return view('.createVueJs');

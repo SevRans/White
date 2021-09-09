@@ -1,11 +1,11 @@
 <template>
     <div class="container-md" id="QuestionCreate">
         <div><p>Question is: {{ question }}</p></div>
-        <form method="post" action="/questions/store" @submit.prevent="send">
+<!--        <form method="post" action="/questions/store" @submit.prevent="send">-->
             <div class="control">
                 <input type="text" required v-model="question" placeholder="Area for questions">
 
-                <button type="submit" class="button btn-success "  @click="send()">Save</button>
+                <button  class="button btn-success "  @click="send()">Save</button>
 
                 <div>
                     <p>Created Data:</p>
@@ -15,17 +15,27 @@
 
                     <span>Answer:{{ answer.text}} , Variant:{{ answer.variant}},Value:{{ answer.value}}</span>
                 </div>
-
+<span class="error">{{error}}</span>
                 <div>
+                    <em>
                     <label>Answer:</label>
                     <input type="text" required v-model="answer.text">
 
-                    <label>Variant:</label>
-                    <input type="number" required v-model="answer.variant">
-
-                    <label>Value:</label>
-                    <input type="int" required v-model="answer.value">
-
+<!--                    <label>Variant:</label>-->
+<!--                    <input type="number" required v-model="answer.variant">-->
+<!--                    <input type="radio" id="one" value="0" v-model="answer.value">-->
+<!--                    <label for="one">Wrong</label>-->
+<!--                    <br>-->
+<!--                    <input type="radio" id="two" value="1" v-model="answer.value">-->
+<!--                    <label for="two">Correct</label>-->
+                        <input type="checkbox" v-model="answer.value"
+                            true-value="1"
+                            false-value="0"
+                        >
+                    <label >Correct?</label>
+<!--                    <label>Value:</label>-->
+<!--                    <input type="int" required v-model="answer.value">-->
+                    </em>
                     <button class="button btn-primary" v-on:click="addAnswer()"><span class="fa fa-plus-circle"></span>
                     </button>
 
@@ -33,12 +43,12 @@
                     </button>
                 </div>
             </div>
-        </form>
+<!--        </form>-->
         <div>
 <!--                        <button type="button" class="btn-warning" @click="showModal">-->
 <!--                            Open Modal!-->
 <!--                        </button>-->
-            <modal-component v-show="isModalVisible" @close="closeModal"/>
+<!--            <modal-component v-show="isModalVisible" @close="closeModal"/>-->
         </div>
     </div>
 </template>
@@ -46,7 +56,6 @@
 <script>
 import axios from "axios";
 import ModalComponent from "./ModalComponent";
-import"@fortawesome/fontawesome-free/js/fontawesome.min.js";
 
 export default {
     name: "QuestionCreate",
@@ -63,7 +72,7 @@ export default {
             answers: [],
             isModalVisible: false,
             resSum: '',
-            errors:[],
+            error:'',
             isAvailable:false
         }
 
@@ -74,13 +83,20 @@ export default {
 
     },
     watch: {
-        resSum: function (res) {
-            if (res === 0) {
-                this.isModalVisible = true
-            } else {
-                location.href = this.resSum
-            }
-        },
+        // resSum: function (res) {
+        //     if (res === 0) {
+        //         this.isModalVisible = true
+        //     } else {
+        //         location.href = this.resSum
+        //     }
+        // },
+        // resSum:function(res){
+        //     if(res ===0){
+        //         this.error='Cannot accept that data'
+        //     }else{
+        //         this.error='Data accepted'
+        //     }
+        // }
     },
     computed: {
 
@@ -105,14 +121,17 @@ export default {
                 .then((response) => {
                     //Perform Success Action
                     console.log(response)
+                    if(response.data===0){
+                        this.error='Cannot accept that data'
+                    }
                     this.resSum = response.data
-
-
                 })
                 .catch((error) => {
                     this.errors = error.response.data
                     // error.response.status Check status code
+                    console.log('tesrerror.response.data');
                     console.log(error.response.data);
+                    this.error=error.response.data.message;
                 }).finally(() => {
                 //Perform action in always
             })
@@ -165,7 +184,10 @@ button[type="submit"] {
     border-radius: 10px;
     font-width: bold;
 }
+span[class='error']{
+    color:red;
 
+}
 
 p {
 

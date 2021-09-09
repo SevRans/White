@@ -38,14 +38,17 @@ class QuestionsController extends Controller
         $newQuestions->question = $validated ['question'];
         $newQuestions->save();
 
+ $variant=1;
+
 
         foreach ($validated ['answers'] as $answer) {
             $newAnswers = new answers();
             $newAnswers->question_id = $newQuestions->id;
-            $newAnswers->variant = $answer['variant'];
+            $newAnswers->variant = $variant;
             $newAnswers->text = $answer['text'];
             $newAnswers->value = $answer['value'];
             $newAnswers->save();
+            $variant++;
         }
 
 
