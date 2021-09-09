@@ -4,7 +4,7 @@
 
     <div class="container">
         <a href="{{route('test.example')}}" class="btn btn-primary btn-lg btn-block"> Test-area List</a>
-        <div action="{{route('Answers.store')}}" method="post">
+        <div action="{{route('AnswersController.store')}}" method="post">
             @csrf
 {{--            <div class="form-group">--}}
 {{--                <label for="question">Question</label>--}}

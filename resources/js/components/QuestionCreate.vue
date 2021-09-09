@@ -6,7 +6,6 @@
                 <input type="text" required v-model="question" placeholder="Area for questions">
 
                 <button type="submit" class="button btn-success "  @click="send()">Save</button>
-<!--                <span class="has-error" v-text="errors.question"></span>-->
 
                 <div>
                     <p>Created Data:</p>
@@ -36,9 +35,9 @@
             </div>
         </form>
         <div>
-            <!--            <button type="button" class="btn-warning" @click="showModal">-->
-            <!--                Open Modal!-->
-            <!--            </button>-->
+<!--                        <button type="button" class="btn-warning" @click="showModal">-->
+<!--                            Open Modal!-->
+<!--                        </button>-->
             <modal-component v-show="isModalVisible" @close="closeModal"/>
         </div>
     </div>
@@ -47,6 +46,7 @@
 <script>
 import axios from "axios";
 import ModalComponent from "./ModalComponent";
+import"@fortawesome/fontawesome-free/js/fontawesome.min.js";
 
 export default {
     name: "QuestionCreate",
@@ -55,6 +55,11 @@ export default {
     data() {
         return {
             question: '',
+            answer:{
+                value:0,
+                variant:0,
+                text:''
+            },
             answers: [],
             isModalVisible: false,
             resSum: '',
@@ -64,13 +69,7 @@ export default {
 
     },
 
-    // filters: {
-    //     capitalize: function (val) {
-    //         if (!val) return ''
-    //         val = val.toString()
-    //         return val.charAt(0).toUpperCase() + val.slice(1)
-    //     }
-    // },
+
     mounted() {
 
     },
@@ -88,14 +87,6 @@ export default {
     },
 
     methods: {
-        // addAnswer(e) {
-        //     if(e.key=== this.answer){
-        //         if(!this.answers.includes(this.answer)){
-        //             this.answers.push(this.answer)
-        //         }
-        //         this.answer=''
-        //     }
-        // },
         addAnswer() {
             let an = {...this.answer}
             this.answers.push(an)
@@ -107,7 +98,7 @@ export default {
         send() {
             //this.answers = [this.answers.answer]
 
-            axios.post('/questions/store', {
+            axios.post('/questions/create', {
                 question: this.question,
                 answers: this.answers
             })

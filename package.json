@@ -28,10 +28,11 @@
         "@fortawesome/fontawesome-free": "^5.15.4",
         "@popperjs/core": "^2.10.1",
         "bootstrap": "^5.1.1",
+        "flickity": "^2.2.2",
         "git-download": "^0.0.2",
         "moment": "^2.29.1",
         "portal-vue": "^2.1.7",
-        "vue-tabler-icons": "^2.1.0",
-        "vue-router": "^3.5.2"
+        "vue-router": "^3.5.2",
+        "vue-tabler-icons": "^2.1.0"
     }
 }

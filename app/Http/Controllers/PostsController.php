@@ -32,7 +32,7 @@ public function store(Request $request)
     $newPosts->save();
 
 
-    //return redirect()->route('Answers.create')
+    //return redirect()->route('AnswersController.create')
     //    ->with('success','question created.');
     return route('posts.index');
 

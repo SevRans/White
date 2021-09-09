@@ -43,7 +43,13 @@ Route::group(
     Route::post('create', [\App\Http\Controllers\QuestionsController::class, 'store'])->name('create');
 });
 
+Route::get('/test/index', [\App\Http\Controllers\AnswersController::class, 'index'])->name('test.example');
+Route::get('/test/api/index', [\App\Http\Controllers\AnswersController::class, 'indexApi'])->name('test.example');
+Route::get('/test/create', [\App\Http\Controllers\AnswersController::class, 'create'])->name('Answers.create');
+Route::post('/test/store', [\App\Http\Controllers\AnswersController::class, 'store'])->name('Answers.store');
+
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/account', [App\Http\Controllers\HomeController::class, 'ACC'])->name('Acc');
 
 

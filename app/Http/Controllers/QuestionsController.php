@@ -49,7 +49,7 @@ class QuestionsController extends Controller
         }
 
 
-        //return redirect()->route('Answers.create')
+        //return redirect()->route('AnswersController.create')
         //    ->with('success','question created.');
         return route('testVue');
 
@@ -62,9 +62,9 @@ class QuestionsController extends Controller
             'answers_id' => 'required'
         ]);
 
-        //$an = Answers::find($validated['answer_id']);
+        //$an = AnswersController::find($validated['answer_id']);
         //$an = $question->answer->where('id', '=', $validated['answer_id'])->first();
-        $ans = answers::whereIn('id', $validated['answers_id'])->get();
+        $ans = Answers::whereIn('id', $validated['answers_id'])->get();
 
         $ball = 0;
 
