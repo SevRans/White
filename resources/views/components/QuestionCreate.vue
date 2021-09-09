@@ -1,0 +1,198 @@
+<template>
+    <div class="container-md" id="QuestionCreate">
+        <div><p>Question is: {{ question }}</p></div>
+        <form method="post" action="/questions/store" @submit.prevent="send">
+            <div class="control">
+                <input type="text" required v-model="question" placeholder="Area for questions">
+
+                <button type="submit" class="button btn-success "  @click="send()">Save</button>
+<!--                <span class="has-error" v-text="errors.question"></span>-->
+
+                <div>
+                    <p>Created Data:</p>
+                </div>
+
+                <div v-for="answer in answers">
+
+                    <span>Answer:{{ answer.text}} , Variant:{{ answer.variant}},Value:{{ answer.value}}</span>
+                </div>
+
+                <div>
+                    <label>Answer:</label>
+                    <input type="text" required v-model="answer.text">
+
+                    <label>Variant:</label>
+                    <input type="number" required v-model="answer.variant">
+
+                    <label>Value:</label>
+                    <input type="int" required v-model="answer.value">
+
+                    <button class="button btn-primary" v-on:click="addAnswer()"><span class="fa fa-plus-circle"></span>
+                    </button>
+
+                    <button class="button btn-danger" v-on:click="removeAnswer()"><span class="fa fa-minus-circle"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div>
+            <!--            <button type="button" class="btn-warning" @click="showModal">-->
+            <!--                Open Modal!-->
+            <!--            </button>-->
+            <modal-component v-show="isModalVisible" @close="closeModal"/>
+        </div>
+    </div>
+</template>
+
+<script>
+import axios from "axios";
+import ModalComponent from "./ModalComponent";
+
+export default {
+    name: "QuestionCreate",
+    components: {ModalComponent},
+
+    data() {
+        return {
+            question: '',
+            answer: {
+                text: '',
+                variant:0,
+                value:0
+            },
+            answers: [],
+            isModalVisible: false,
+            resSum: '',
+            errors:[],
+            isAvailable:false
+        }
+
+    },
+
+    // filters: {
+    //     capitalize: function (val) {
+    //         if (!val) return ''
+    //         val = val.toString()
+    //         return val.charAt(0).toUpperCase() + val.slice(1)
+    //     }
+    // },
+    mounted() {
+
+    },
+    watch: {
+        resSum: function (res) {
+            if (res === 0) {
+                this.isModalVisible = true
+            } else {
+                location.href = this.resSum
+            }
+        },
+    },
+    computed: {
+
+    },
+
+    methods: {
+        // addAnswer(e) {
+        //     if(e.key=== this.answer){
+        //         if(!this.answers.includes(this.answer)){
+        //             this.answers.push(this.answer)
+        //         }
+        //         this.answer=''
+        //     }
+        // },
+        addAnswer() {
+            let an = {...this.answer}
+            this.answers.push(an)
+        },
+        removeAnswer() {
+            let an = this.answer
+            this.answers.pop(an)
+        },
+        send() {
+            //this.answers = [this.answers.answer]
+
+            axios.post('/questions/store', {
+                question: this.question,
+                answers: this.answers
+            })
+                .then((response) => {
+                    //Perform Success Action
+                    console.log(response)
+                    this.resSum = response.data
+
+
+                })
+                .catch((error) => {
+                    this.errors = error.response.data
+                    // error.response.status Check status code
+                    console.log(error.response.data);
+                }).finally(() => {
+                //Perform action in always
+            })
+        },
+        showModal() {
+            this.isModalVisible = true;
+        },
+
+
+        closeModal() {
+            this.isModalVisible = false;
+        }
+    },
+
+}
+</script>
+
+<style scoped>
+label {
+
+
+    display: inline-block;
+    margin: 25px 0 15px;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-width: bold;
+}
+
+span {
+
+}
+
+button {
+    max-width: 50px;
+    margin: 20px auto;
+    background: grey;
+    text-align: center;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+button[type="submit"] {
+    max-width: 120px;
+    background-color: white;
+    color: black;
+    margin: auto;
+    text-align: center;
+    padding: 8px;
+    border-radius: 10px;
+    font-width: bold;
+}
+
+
+p {
+
+    display: inline-block;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-width: bold;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+input {
+    padding-bottom: 10px;
+}
+</style>
