@@ -6,23 +6,23 @@
 
                     <header class="modal-header">
                         <slot name="header">
-                            Your question and answers not created!
+                           This is a helper Modal.
 
                         </slot>
                     </header>
 
                     <section class="modal-body">
                         <slot name="body">
-                            Your question and answers not created! You can go to
-                            Test List
-                            or you can create  question and answers again . Please Check your input data.
+                           Please full all input forms and send data.If you chose incorrect data form
+                            you catch error under  <span>'CREATED DATA'</span>.Please, keep calm and try to fill forms again.
+                            If you cant send data or you catch errors everytime Contact with us.
                         </slot>
                     </section>
 
                     <div class="modal-footer">
 
                         <button type="button" class="btn-warning" @click="direct">
-                            Test List
+                            Contacts
                         </button>
                         <button type="button" class="btn-green" @click="close">
                             Close Modal
@@ -51,7 +51,7 @@ export default {
             this.$emit('close')
         },
         direct() {
-            location.href = '/testVueJS'
+            location.href = '/contact'
         }
     }
 }
@@ -59,6 +59,9 @@ export default {
 </script>
 
 <style scoped>
+span{
+    color:darkblue;
+}
 .modal {
     position: fixed;
     top: 0;

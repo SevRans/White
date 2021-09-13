@@ -15,11 +15,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
 
 </head>
 <body>
@@ -35,22 +32,43 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Object
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/createVueJs">Create Test Object</a></li>
+                                <li><a class="dropdown-item" href="/testingVue">Test Object</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Service
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/contact">Contact-Us</a></li>
+                                <li><a class="dropdown-item" href="/about">About-us</a></li>
+{{--                                <li><hr class="dropdown-divider"></li>--}}
+{{--                                <li><a class="dropdown-item" href="#">Something else here</a></li>--}}
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Material
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/testJS">Posts and news</a></li>
+                                <li><a class="dropdown-item" href={{route('ListIndex')}}>Answers List</a></li>
+{{--                                <li><hr class="dropdown-divider"></li>--}}
+{{--                                <li><a class="dropdown-item" href="#">Something else here</a></li>--}}
+                            </ul>
 
                     </ul>
-
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav me-2">
                         <!-- Authentication Links -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="/createVueJs">Create Test Object</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/testingVue">Test Object</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/testJS">Posts and news</a>
-                        </li>
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -65,31 +83,38 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/account" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" type="button" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-address-card"></i>
                                     {{ Auth::user()->name }}
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="/account">Account</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                            {{ __('Logout') }}
+                                        </a> <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form></li>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
+                                </ul>
                             </li>
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
+        <div id="page-container">
+            <div id="content-wrap">
         <main class="py-4">
             @yield('content')
         </main>
+            </div>
+        <footer class="footer footer-bordered">
+            <p>THIS is a test footer.We replace it soon.</p>
+        </footer>
+        </div>
     </div>
 </body>
 </html>

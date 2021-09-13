@@ -6,13 +6,10 @@
 
 
 require('./bootstrap');
-// window.bootstrap = require('./bootstrap');
 window.Vue = require('vue').default;
-// Vue.use(PortalVue);
-// window.PortalVue =require ('portal-vue');
 window.moment = require('moment');
 window.moment.locale('ru');
-// window.BootsrapVue = require('bootstrap-vue');
+
 
 
 
@@ -41,6 +38,9 @@ Vue.component('answers-create', require('./components/QuestionCreate.vue').defau
 Vue.component('modal-component', require('./components/ModalComponent.vue').default);
 Vue.component('posts-component', require('./components/PostsComponent.vue').default);
 Vue.component('card-component', require('./components/CardComponent.vue').default);
+Vue.component('service-component', require('./components/ServiceComponent.vue').default);
+Vue.component('answers-list', require('./components/AnswersList.vue').default);
+Vue.component('lone-answer', require('./components/LoneAnswer.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <table class="table-bordered">
+        <table class=" table-bordered">
             <tr >
                 <td>
                     <span>{{ postedOn(question) }}</span>
@@ -25,7 +25,7 @@
                         <span v-bind:class="[isWrong ? 'lose-r' : 'win-r']">{{ ( result===0 ?'Loser':'Ok') }}</span>
                     </p>
 
-                    <button class="btn-warning" @click="endTest">Check answer</button>
+                    <button class="btn-warning" @click="endTest"><i class="far fa-check-circle"></i>Check answer</button>
                 </td>
             </tr>
         </table>
@@ -55,24 +55,10 @@ export default {
     props: {
         // id: Number,
         question: Object,
-
     },
 
     mounted() {
-        // axios.get('/api/show/question/' +
-        //     this.id)
-        //     .then((response) => {
-        //         // handle success
-        //         //console.log(response);
-        //         this.question = response.data
-        //     })
-        //     .catch(function (error) {
-        //         // handle error
-        //         console.log(error);
-        //     })
-        //     .then(function () {
-        //         // always executed
-        //     });
+
     },
 
     watch: {
@@ -147,7 +133,7 @@ span {
 }
 
 table {
-    bordercolor: "#343a40";
+    border-color: #343a40;
     width: 450px;
     /*display: inline-block;*/
     font-size: 1em;
@@ -157,6 +143,7 @@ table {
     margin-right: 150px;
     margin-top: 30px;
     margin-left: 250px;
+    margin-bottom:60px;
 }
 
 button{

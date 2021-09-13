@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-
-<answers-list></answers-list>
+<service-component></service-component>
 @endsection

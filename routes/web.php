@@ -15,12 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {return view('welcome');});
 
-Route::get('/VuePosts', function(){return view ('testVueJs');});
-
 Route::get('/testJS', function () {return view('forTest/testJS');});
+
+Route::get('/contact', function () {return view('service/contact');});
 
 //Route::get('/testingVue', function () { return view('testingVue');})->name('testVue');
 Route::view('/testingVue','testingVue')->name('testVue');
+Route::view('/answers/answersList','answers/answersList')->name('ListIndex');
 
 Route::get('/createVueJs', function () {
     return view('.createVueJs');
@@ -44,7 +45,6 @@ Route::group(
     Route::post('create', [\App\Http\Controllers\QuestionsController::class, 'store'])->name('create');
 });
 
-Route::get('/test/index', [\App\Http\Controllers\AnswersController::class, 'index'])->name('test.example');
 Route::get('/test/api/index', [\App\Http\Controllers\AnswersController::class, 'indexApi'])->name('test.example');
 Route::get('/test/create', [\App\Http\Controllers\AnswersController::class, 'create'])->name('Answers.create');
 Route::post('/test/store', [\App\Http\Controllers\AnswersController::class, 'store'])->name('Answers.store');

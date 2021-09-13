@@ -8,6 +8,9 @@ use Symfony\Component\Console\Question\Question;
 use App\Models\Answers;
 class QuestionsController extends Controller
 {
+    public function index(){
+        return Questions::with(['answers'])->get();
+    }
     public function indexApi()
     {
         return Questions::with(['answers'])->get();

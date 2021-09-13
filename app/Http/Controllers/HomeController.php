@@ -27,6 +27,6 @@ class HomeController extends Controller
     }
     public function ACC()
     {
-        return view('account');
+        return view('service/account');
     }
 }

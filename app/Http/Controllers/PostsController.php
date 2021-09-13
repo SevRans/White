@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\answers;
+use App\Models\Answers;
 use App\Models\Posts;
 use Illuminate\Http\Request;
 use App\Models\Questions;

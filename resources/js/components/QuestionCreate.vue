@@ -4,11 +4,9 @@
 <!--        <form method="post" action="/questions/store" @submit.prevent="send">-->
             <div class="control">
                 <input type="text" required v-model="question" placeholder="Area for questions">
-
-                <button  class="button btn-success "  @click="send()">Save</button>
-
+                <label style="color:yellowgreen">This area need to be filled.</label>
                 <div>
-                    <p>Created Data:</p>
+                    <p >Created Data:</p>
                 </div>
 
                 <div v-for="answer in answers">
@@ -21,20 +19,8 @@
                     <label>Answer:</label>
                     <input type="text" required v-model="answer.text">
 
-<!--                    <label>Variant:</label>-->
-<!--                    <input type="number" required v-model="answer.variant">-->
-<!--                    <input type="radio" id="one" value="0" v-model="answer.value">-->
-<!--                    <label for="one">Wrong</label>-->
-<!--                    <br>-->
-<!--                    <input type="radio" id="two" value="1" v-model="answer.value">-->
-<!--                    <label for="two">Correct</label>-->
-                        <input type="checkbox" v-model="answer.value"
-                            true-value="1"
-                            false-value="0"
-                        >
-                    <label >Correct?</label>
-<!--                    <label>Value:</label>-->
-<!--                    <input type="int" required v-model="answer.value">-->
+                        <input type="checkbox" v-model="answer.value" true-value="1" false-value="0">
+                        <label >Correct?</label>
                     </em>
                     <button class="button btn-primary" v-on:click="addAnswer()"><span class="fa fa-plus-circle"></span>
                     </button>
@@ -42,13 +28,14 @@
                     <button class="button btn-danger" v-on:click="removeAnswer()"><span class="fa fa-minus-circle"></span>
                     </button>
                 </div>
+                <button  class="button btn-success "  @click="send()">Save</button>
             </div>
-<!--        </form>-->
+
         <div>
-<!--                        <button type="button" class="btn-warning" @click="showModal">-->
-<!--                            Open Modal!-->
-<!--                        </button>-->
-<!--            <modal-component v-show="isModalVisible" @close="closeModal"/>-->
+                        <button type="button" class="btn-warning" @click="showModal">
+                            Open Helper!
+                        </button>
+            <modal-component v-show="isModalVisible" @close="closeModal"/>
         </div>
     </div>
 </template>
@@ -83,20 +70,7 @@ export default {
 
     },
     watch: {
-        // resSum: function (res) {
-        //     if (res === 0) {
-        //         this.isModalVisible = true
-        //     } else {
-        //         location.href = this.resSum
-        //     }
-        // },
-        // resSum:function(res){
-        //     if(res ===0){
-        //         this.error='Cannot accept that data'
-        //     }else{
-        //         this.error='Data accepted'
-        //     }
-        // }
+       //
     },
     computed: {
 
@@ -133,7 +107,6 @@ export default {
                     console.log(error.response.data);
                     this.error=error.response.data.message;
                 }).finally(() => {
-                //Perform action in always
             })
         },
         showModal() {
@@ -150,6 +123,9 @@ export default {
 </script>
 
 <style scoped>
+body{
+
+}
 label {
 
 
@@ -158,7 +134,6 @@ label {
     font-size: 1em;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-width: bold;
 }
 
 span {
@@ -173,6 +148,9 @@ button {
     padding: 8px;
     border-radius: 10px;
 }
+button[class="btn-warning"]{
+    max-width: 150px;
+}
 
 button[type="submit"] {
     max-width: 120px;
@@ -184,6 +162,10 @@ button[type="submit"] {
     border-radius: 10px;
     font-width: bold;
 }
+button[class="button btn-primary"]{
+    margin:20px;
+}
+
 span[class='error']{
     color:red;
 
@@ -195,12 +177,18 @@ p {
     font-size: 1em;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-width: bold;
     margin-right: auto;
     margin-top: 30px;
 }
-
-input {
+input[type="text"]{
+    padding:10px;
+    padding-right: 30px;
+    margin-right:50px ;
+}
+input [type="checkbox"]{
     padding-bottom: 10px;
+    margin-left:30px;
+    left: 20px;
+    padding-left:30px;
 }
 </style>
