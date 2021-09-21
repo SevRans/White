@@ -21,11 +21,15 @@ Route::get('/contact', function () {return view('service/contact');});
 
 //Route::get('/testingVue', function () { return view('testingVue');})->name('testVue');
 Route::view('/testingVue','testingVue')->name('testVue');
-Route::view('/answers/answersList','answers/answersList')->name('ListIndex');
 
-Route::get('/createVueJs', function () {
-    return view('.createVueJs');
+Route::middleware(['auth'])->group(function () {
+    Route::view('/answers/answersList', 'answers/answersList')->name('ListIndex');
+    Route::get('/createVueJs', function () { return view('.createVueJs');
+    });
 });
+
+
+
 Route::get('/VueModel', function () {
     return view('.VueModel');
 });

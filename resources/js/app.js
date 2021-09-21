@@ -4,28 +4,14 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-
+import './bootstrap';
 require('./bootstrap');
 window.Vue = require('vue').default;
 window.moment = require('moment');
 window.moment.locale('ru');
-
-
-
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+import router from './routes';
 
 Vue.component('carousel-component', require('./components/CarouselComponent.vue').default);
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('test-counter', require('./components/TestCounter.vue').default);
 Vue.component('test-score', require('./components/TestScore.vue').default);
 Vue.component('test-game', require('./components/TestGame.vue').default);
@@ -47,7 +33,10 @@ Vue.component('lone-answer', require('./components/LoneAnswer.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
+ new Vue({
     el: '#app',
+
+    router:router
 });
+
 const axios = require('axios').default;

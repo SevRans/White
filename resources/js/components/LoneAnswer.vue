@@ -1,6 +1,7 @@
 <template>
 
     <div class="container">
+
         <table class="table table-bordered">
             <tr>
                 <th colspan="3">
@@ -13,11 +14,17 @@
                     <span>{{ postedOn(question) }}</span>
                 </td>
             </tr>
-            <tr>
-                <td v-for="an in question.answers">
-                    <span :class="{ active: isActive }">{{ an.text | capitalize }}</span>
+            <tr v-for="an in question.answers">
+                <td>
+                    <!--                    <span :class="{ active: isActive }">{{ an.text | capitalize }}</span>-->
+                    <p v-bind:class="[isRight(an.value) ? 'right' :'']">
+                        <span v-if="an.value ===1"> <i class="far fa-check-circle"></i></span>
+                        {{ an.text | capitalize }}
+                        <!--                        &lt;!&ndash;                        <span v-bind:class="[isActive ? 'lose-r' : 'win-r']">{{ ( an.value===0 ?'Loser':'Ok') }}</span>&ndash;&gt;-->
+                    </p>
 
-                    <!--                    <span>{{an.variant}}</span><i class="far fa-check-circle"></i> {{ an.text | capitalize }}-->
+                    <!--                     <span v-bind:class="[isActive ? 'lose-r' : 'win-r']">{{ ( an.value===0 ?'Wrong':'right') }}</span>-->
+                    <!--<span>{{an.variant}}</span><i class="far fa-check-circle"></i> {{ an.text | capitalize }}-->
                 </td>
             </tr>
         </table>
@@ -34,7 +41,9 @@ export default {
         return {
             now: '',
             value: '',
-            isActive: false,
+            // isRight: false,
+            isHidden: true
+
         }
     },
     props: {
@@ -52,36 +61,44 @@ export default {
         console.log('mounted');
     },
     // watch: {
-    //      value:function(){
-    //         this.value = this.question.answers.value
+    //     value: function (an) {
+    //         if (an.value === 1) {
+    //             this.isRight = true;
+    //         } else {
+    //             this.isRight = false;
+    //         }
     //     }
     // },
-    watch: {
-        show: function () {
-            this.value = this.question.answers.value
-        },
-        value: function (val) {
-            if (val === 1) {
-                this.isActive = true
-            } else {
-                this.isActive = false
-            }
-        },
-    },
 
     methods: {
+        isRight(value){
+            return value===1
+        },
+        // showAns(an) {
+        //     // this.value = this.question.answers.value;
+        //     this.isActive = an.value === 1;
+        //     console.log(this.value)
+        // },
+
         postedOn(question) {
             return moment(question.created_at).fromNow();
             // return moment(question.created_at).format("dddd, MMMM Do YYYY, h:mm:ss a");
         }
-    }
+    },
 
 }
 </script>
 
 <style scoped>
-.active {
-    color: aquamarine;
+
+
+.right {
+    font-weight: bold;
+    color:#38c172;
+    /*color: red;*/
+}
+span{
+    font-weight: bold;
 }
 
 </style>

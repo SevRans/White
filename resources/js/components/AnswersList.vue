@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <table class="table-bordered">
-            <tr v-for="q in questions">
+
+            <a v-for="q in questions">
                 <lone-answer :question="q"></lone-answer>
-            </tr>
-        </table>
+            </a>
+
     </div>
 </template>
 

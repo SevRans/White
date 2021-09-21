@@ -14,7 +14,7 @@
 
             <tr>
                 <td v-for="an in question.answers">
-                    <input type="checkbox" class="form-check-input" name="test" v-on:click="chois(an)" :value="an.id" v-model="checkedAnswers">
+                        <input type="checkbox" class="form-check-input" name="test" v-on:click="chois(an)" :value="an.id" v-model="checkedAnswers">
                     <label :id="an.id">{{ an.text | capitalize }}<br></label>
                 </td>
             </tr>
@@ -24,14 +24,10 @@
                     <p v-if="show" v-bind:class="[isWrong ? 'lose' : 'win']"> Picked:{{ picked }}
                         <span v-bind:class="[isWrong ? 'lose-r' : 'win-r']">{{ ( result===0 ?'Loser':'Ok') }}</span>
                     </p>
-
                     <button class="btn-warning" @click="endTest"><i class="far fa-check-circle"></i>Check answer</button>
                 </td>
             </tr>
         </table>
-
-
-
     </div>
 </template>
 
@@ -60,16 +56,16 @@ export default {
     mounted() {
 
     },
-
-    watch: {
-        result: function (val) {
-            if (val===1){
-                this.isWrong = false
-            } else{
-                this.isWrong = true
-            }
-        },
-    },
+    // watch: {
+    //     result: function (val) {
+    //         console.log('val')
+    //         if (val===1){
+    //             this.isWrong = false
+    //         } else{
+    //             this.isWrong = true
+    //         }
+    //     },
+    // },
     filters: {
             capitalize: function (v) {
                 if (!v) return ''
@@ -84,9 +80,6 @@ export default {
             // if(cv === true ){
             this.picked = an.id
             this.show = false
-            // }else{
-            //     console.log('variant unselected')
-            // }
             console.log('variant selected');
             // return this.answer.text
 
@@ -98,10 +91,14 @@ export default {
             })
                 .then((response) => {
                     //Perform Success Action
-                    console.log(response)
+                    // console.log(response)
                     this.result = response.data
+                    if (this.result===1){
+                        this.isWrong = false
+                    } else{
+                        this.isWrong = true
+                    }
                     this.show = true
-
                 })
                 .catch((error) => {
                     // error.response.status Check status code

@@ -50,8 +50,8 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/contact">Contact-Us</a></li>
                                 <li><a class="dropdown-item" href="/about">About-us</a></li>
-{{--                                <li><hr class="dropdown-divider"></li>--}}
-{{--                                <li><a class="dropdown-item" href="#">Something else here</a></li>--}}
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -61,8 +61,8 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/testJS">Posts and news</a></li>
                                 <li><a class="dropdown-item" href={{route('ListIndex')}}>Answers List</a></li>
-{{--                                <li><hr class="dropdown-divider"></li>--}}
-{{--                                <li><a class="dropdown-item" href="#">Something else here</a></li>--}}
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
 
                     </ul>
@@ -110,11 +110,17 @@
         <main class="py-4">
             @yield('content')
         </main>
+{{--        <router-link to="/">Home</router-link>--}}
+{{--        <router-link to="/about">About</router-link>--}}
+
+{{--        <router-view></router-view>--}}
+
             </div>
-        <footer class="footer footer-bordered">
-            <p>THIS is a test footer.We replace it soon.</p>
-        </footer>
+{{--        <footer class="footer footer-bordered">--}}
+{{--            <p>THIS is a test footer.We replace it soon.</p>--}}
+{{--        </footer>--}}
         </div>
     </div>
+    <script src="/js/app.js"></script>
 </body>
 </html>
